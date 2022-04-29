@@ -15,63 +15,63 @@ function block_theme_files() {
   
   add_action('after_setup_theme', 'theme_features');
 
-class PlaceholderBlock {
-
+  class PlaceholderBlock {
     function __construct($name) {
-        $this->name = $name;
-        add_action('init', [$this, 'onInit']);
-    }
-    
-    function ourRenderCallback($attributes, $content) {
-        ob_start();
-        require get_theme_file_path("/src/{$this->name}.php");
-        return ob_get_clean();
-    }
-    
-    function onInit() {
-        wp_register_script($this->name, get_stylesheet_directory_uri() . "/src/{$this->name}.js", array('wp-blocks', 'wp-editor'));
-        
-        register_block_type("wbt/{$this->name}", array(
-        'editor_script' => $this->name,
-        'render_callback' => [$this, 'ourRenderCallback']
-        ));
-    }
-}
-
-new PlaceholderBlock('header');
-
-class JSXBlock {
-    function __construct($name, $renderCallback = null, $data = null) {
       $this->name = $name;
-      $this->data = $data;
-      $this->renderCallback = $renderCallback;
       add_action('init', [$this, 'onInit']);
     }
   
     function ourRenderCallback($attributes, $content) {
       ob_start();
-      require get_theme_file_path("/src/{$this->name}.php");
+      require get_theme_file_path("/our-blocks/{$this->name}.php");
       return ob_get_clean();
     }
   
     function onInit() {
-      wp_register_script($this->name, get_stylesheet_directory_uri() . "/build/index.js", array('wp-blocks', 'wp-editor'));
+      wp_register_script($this->name, get_stylesheet_directory_uri() . "/our-blocks/{$this->name}.js", array('wp-blocks', 'wp-editor'));
       
-      if ($this->data) {
-        wp_localize_script($this->name, $this->name, $this->data);
-      }
-  
-      $ourArgs = array(
-        'editor_script' => $this->name
-      );
-  
-      if ($this->renderCallback) {
-        $ourArgs['render_callback'] = [$this, 'ourRenderCallback'];
-      }
-  
-      register_block_type("wbt/{$this->name}", $ourArgs);
+      register_block_type("wbt/{$this->name}", array(
+        'editor_script' => $this->name,
+        'render_callback' => [$this, 'ourRenderCallback']
+      ));
     }
   }
+
+new PlaceholderBlock('header');
+
+class JSXBlock {
+  function __construct($name, $renderCallback = null, $data = null) {
+    $this->name = $name;
+    $this->data = $data;
+    $this->renderCallback = $renderCallback;
+    add_action('init', [$this, 'onInit']);
+  }
+
+  function ourRenderCallback($attributes, $content) {
+    ob_start();
+    require get_theme_file_path("/our-blocks/{$this->name}.php");
+    return ob_get_clean();
+  }
+
+  function onInit() {
+    wp_register_script($this->name, get_stylesheet_directory_uri() . "/build/{$this->name}.js", array('wp-blocks', 'wp-editor'));
+    
+    if ($this->data) {
+      wp_localize_script($this->name, $this->name, $this->data);
+    }
+
+    $ourArgs = array(
+      'editor_script' => $this->name
+    );
+
+    if ($this->renderCallback) {
+      $ourArgs['render_callback'] = [$this, 'ourRenderCallback'];
+    }
+
+    register_block_type("wbt/{$this->name}", $ourArgs);
+  }
+}
+
 
   new JSXBlock('banner', true);
 
