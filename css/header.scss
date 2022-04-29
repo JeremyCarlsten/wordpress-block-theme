@@ -1,0 +1,55 @@
+@import 'mixins';
+
+.logo img {
+    width: 400px;
+}
+
+header.page-header {
+    background: rgba(255, 255, 255, 0.9);
+    position: absolute;
+    width: 100%;
+    top: 0;
+
+    @include admin-sticky-fix;
+}
+
+.main-nav {
+    padding: 15px;
+}
+
+.main-nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.main-nav ul li {
+    margin: 10px;
+    list-style: none;
+}
+
+.main-nav ul li a {
+    color: #000;
+    font-size: 1.1em;
+    font-weight: bold;
+    white-space: nowrap;
+
+    text-decoration: underline;
+    text-decoration-color: transparent;
+
+    /*add those for opera and mozilla support*/
+    -webkit-text-decoration-color: transparent;
+    -moz-text-decoration-color: transparent;
+
+    transition: 0.2s ease all;
+}
+
+.main-nav ul li.current-menu-item a {
+    color: #821113;
+}
+
+.main-nav ul li a:hover {
+    color: #821113;
+    text-decoration-color: #821113;
+
+}

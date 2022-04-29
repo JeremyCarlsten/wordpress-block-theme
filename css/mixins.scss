@@ -1,0 +1,37 @@
+/* credit: https://www.sitepoint.com/getting-sticky-headers-wordpress-admin-bar-behave/ */
+@mixin admin-sticky-fix($offset: 0) {
+    $narrow-offset: 46px;
+    $wide-offset: 32px;
+
+    @if $offset !=0 and type-of($offset)=='number' {
+        $narrow-offset: $narrow-offset + $offset;
+        $wide-offset: $wide-offset + $offset;
+    }
+
+    .admin-bar & {
+        top: $narrow-offset;
+
+        @media screen and (min-width: 783px) {
+            top: $wide-offset;
+        }
+    }
+}
+
+
+@mixin admin-sticky-fix-100-vh($offset: 0) {
+    $narrow-offset: 46px;
+    $wide-offset: 32px;
+
+    @if $offset !=0 and type-of($offset)=='number' {
+        $narrow-offset: $narrow-offset + $offset;
+        $wide-offset: $wide-offset + $offset;
+    }
+
+    .admin-bar & {
+        height: calc(100vh - $narrow-offset);
+
+        @media screen and (min-width: 783px) {
+            height: calc(100vh - $wide-offset);
+        }
+    }
+}

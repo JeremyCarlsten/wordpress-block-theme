@@ -1,0 +1,49 @@
+@import 'mixins';
+
+.banner-wrapper {
+    width: 100%;
+    height: 100vh;
+    min-height: 550px;
+    background-image: url('../images/banner.jpg');
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+
+    @include admin-sticky-fix-100-vh;
+}
+
+.banner .banner-scroll {
+    position: relative;
+    top: -50px;
+    color: #fff;
+    font-size: 2rem;
+}
+
+.banner .banner-content {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 50px;
+}
+
+.banner h1 {
+    font-size: 5em;
+    color: $secondary-color;
+    font-weight: normal;
+    font-family: 'Pacifico', sans-serif;
+    margin-top: 0;
+}
+
+.banner h3 {
+    font-size: 1.2em;
+}
+
+.banner div {
+    text-align: center;
+}
+
+.banner button {
+    margin-top: 10px;
+}

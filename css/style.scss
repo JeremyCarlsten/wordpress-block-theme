@@ -1,0 +1,139 @@
+/*
+        ** Theme colors: **  
+       - crr-red: $primary-color
+*/
+@import 'normalize.css';
+@import 'bootstrap-overrides.scss';
+
+@import 'variables.scss';
+@import 'header.scss';
+@import 'banner.scss';
+
+.no-padding {
+    padding: 0;
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+}
+
+body,
+html {
+    overflow-x: hidden;
+}
+
+a {
+    color: $primary-color;
+    text-decoration: none;
+}
+
+a:hover {
+    color: $primary-color-hover;
+    text-decoration: underline;
+}
+
+
+
+.page-content {
+    padding: 20px 50px;
+
+}
+
+.page-content .page-widget {
+    margin: 50px 0;
+}
+
+/* 
+  .page-widget.page-widget-even {
+      /* background:#ccc; 
+      width: 100%;
+      margin: 35px 0px;
+      position:relative;
+  } */
+
+.page-content h1,
+.page-content h2,
+.page-content h3 {
+    font-weight: bold;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.page-content .no-center {
+    text-align: left;
+}
+
+.footer {
+    background: #000;
+    padding: 20px;
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.footer h3 {
+    font-size: 2em;
+    color: $primary-color;
+    font-weight: normal;
+    text-decoration: underline;
+    font-family: 'Pacifico', sans-serif;
+    margin-top: 0;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+
+    /*add those for opera and mozilla support*/
+    -webkit-text-decoration-color: transparent;
+    -moz-text-decoration-color: transparent;
+
+    transition: 0.2s ease all;
+}
+
+.footer a:hover {
+    color: $primary-color;
+    text-decoration-color: $primary-color;
+}
+
+.footer .footer-logo {
+    width: 200px;
+}
+
+.footer .footer-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+
+.events-list {
+    list-style: none;
+}
+
+.events-list li {
+    margin: 22px;
+}
+
+.event-date {
+    font-size: 1.3em;
+    font-weight: bold;
+    background: $primary-color;
+    color: #fff;
+    border-radius: 40px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.event-date .event-month,
+.event-date .event-day {
+    line-height: 20px;
+}
+
+.wp-admin-placeholder-block {
+    padding: 20px;
+    text-align: center;
+    font-size: 1.65rem;
+    background: linear-gradient(180deg, #dedede, #adadad);
+}
