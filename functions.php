@@ -38,6 +38,9 @@ class PlaceholderBlock
     public function ourRenderCallback($attributes, $content)
     {
         ob_start();
+        $attributes = $attributes;
+        $some_var = "hello";
+
         require get_theme_file_path("/src/{$this->name}.php");
         return ob_get_clean();
     }
@@ -46,6 +49,9 @@ class PlaceholderBlock
     {
         register_block_type("wbt/{$this->name}", array(
             'editor_script' => 'wbt_main_script',
+            'attributes' => [
+                'isFixed' => ['type' => 'boolean', 'default' => false],
+            ],
             'render_callback' => [$this, 'ourRenderCallback'],
         ));
     }

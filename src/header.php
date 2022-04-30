@@ -1,11 +1,13 @@
 <?php
-    // $attributes is empty
-    echo "in header.php   ";
-   var_dump($attributes)
+// $attributes is not empty anymore
+echo "in header.php   ";
+var_dump($attributes);
 ?>
 
-<header class="page-header">
-<!-- <header class="page-header <?php // if($attributes[isFixed]) echo 'fixed'?>"> -->
+<header class="page-header <?php if ($attributes['isFixed']) {
+    echo 'fixed';
+}
+?>">
 
     <div class="col">
         <div class="row">
