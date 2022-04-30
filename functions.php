@@ -9,6 +9,15 @@ function block_theme_files()
 
 add_action('wp_enqueue_scripts', 'block_theme_files');
 
+function load_index_js()
+{
+    wp_register_script('wbt_main_script', get_stylesheet_directory_uri() . "/build/index.js", array('wp-blocks', 'wp-editor'));
+    wp_enqueue_script('wbt_main_script');
+
+}
+
+add_action('init', 'load_index_js');
+
 function theme_features()
 {
     add_theme_support('editor-styles');
@@ -35,10 +44,8 @@ class PlaceholderBlock
 
     public function onInit()
     {
-        wp_register_script($this->name, get_stylesheet_directory_uri() . "/src/{$this->name}.js", array('wp-blocks', 'wp-editor'));
-
         register_block_type("wbt/{$this->name}", array(
-            'editor_script' => $this->name,
+            'editor_script' => 'wbt_main_script',
             'render_callback' => [$this, 'ourRenderCallback'],
         ));
     }
@@ -65,14 +72,12 @@ class JSXBlock
 
     public function onInit()
     {
-        wp_register_script($this->name, get_stylesheet_directory_uri() . "/build/index.js", array('wp-blocks', 'wp-editor'));
-
         if ($this->data) {
-            wp_localize_script($this->name, $this->name, $this->data);
+            wp_localize_script('wbt_main_script', $this->name, $this->data);
         }
 
         $ourArgs = array(
-            'editor_script' => $this->name,
+            'editor_script' => 'wbt_main_script',
         );
 
         if ($this->renderCallback) {
