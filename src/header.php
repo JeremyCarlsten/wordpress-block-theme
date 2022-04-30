@@ -4,7 +4,7 @@ echo "in header.php   ";
 var_dump($attributes);
 ?>
 
-<header class="page-header <?php if ($attributes['isFixed']) {
+<header class="page-header <?php if (is_front_page()) {
     echo 'fixed';
 }
 ?>">
